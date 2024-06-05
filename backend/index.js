@@ -6,6 +6,12 @@ const productRoutes = require('./routes/productRoutes');
 const bodyparser = require('body-parser');
 require('dotenv').config();
 
+const corsConfig = {
+  origin: '*',
+  credential: true,
+  methods: ['GET', 'PUT', 'POST', 'DELETE'],
+};
+
 const app = express();
 
 // SERVER
@@ -17,7 +23,8 @@ app.listen(PORT, () => {
 // MIDDEWARE
 app.use(express.json());
 app.use(bodyparser.json());
-app.use(cors());
+app.use(cors(corsConfig));
+// app.options('', cors(corsConfig));
 
 // ROUTE
 app.use('/api/auth', authRoutes);
