@@ -8,7 +8,8 @@ require('dotenv').config();
 
 const corsConfig = {
   origin: '*',
-  credential: true,
+  credentials: true,
+  optionSuccessStatus: 200,
   methods: ['GET', 'PUT', 'POST', 'DELETE'],
 };
 
