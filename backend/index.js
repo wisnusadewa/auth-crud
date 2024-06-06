@@ -25,7 +25,10 @@ app.listen(PORT, () => {
 app.use(express.json());
 app.use(bodyparser.json());
 app.use(cors(corsConfig));
-// app.options('', cors(corsConfig));
+app.use((req, res, next) => {
+  res.header('Access-Control-Allow-Origin', '*');
+  next();
+});
 
 // ROUTE
 app.use('/api/auth', authRoutes);
