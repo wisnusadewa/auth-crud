@@ -9,7 +9,7 @@ const Add = ({ handleClose }) => {
     const price = priceRef.current.value;
 
     try {
-      await fetch('http://localhost:4000/api/auth/products', {
+      await fetch('https://auth-crud-weld.vercel.app/api/auth/products', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

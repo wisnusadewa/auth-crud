@@ -6,7 +6,7 @@ const RegisterComp = () => {
   const navigate = useNavigate();
   const handleRegister = async (values) => {
     try {
-      const res = await fetch('http://localhost:4000/api/auth/signup', {
+      const res = await fetch('https://auth-crud-weld.vercel.app/api/auth/signup', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

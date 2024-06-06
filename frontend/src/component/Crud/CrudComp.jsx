@@ -5,7 +5,7 @@ const CrudComp = ({ product }) => {
 
   const handleDelete = async () => {
     try {
-      await fetch(`http://localhost:4000/api/auth/products/${_id}`, {
+      await fetch(`https://auth-crud-weld.vercel.app/api/auth/products/${_id}`, {
         method: 'DELETE',
         headers: {
           'Content-Type': 'application/json',

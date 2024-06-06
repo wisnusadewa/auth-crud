@@ -18,7 +18,7 @@ const Crud = () => {
 
   const getData = async () => {
     try {
-      const res = await fetch('http://localhost:4000/api/auth/products');
+      const res = await fetch('https://auth-crud-weld.vercel.app/api/auth/products');
       const result = await res.json();
       setItems(result);
       console.log(result);

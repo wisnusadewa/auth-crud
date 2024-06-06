@@ -8,7 +8,7 @@ const Dashboard = () => {
 
   const fetchUser = async () => {
     try {
-      const res = await fetch('http://localhost:4000/api/auth/users', {
+      const res = await fetch('https://auth-crud-weld.vercel.app/api/auth/users', {
         headers: {
           Authorization: `Bearer ${token}`,
         },
