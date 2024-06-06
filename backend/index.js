@@ -7,7 +7,7 @@ const bodyparser = require('body-parser');
 require('dotenv').config();
 
 const corsConfig = {
-  origin: '*',
+  origin: 'https://auth-crud-weld.vercel.app',
   credentials: true,
   optionSuccessStatus: 200,
   methods: ['GET', 'PUT', 'POST', 'DELETE'],
