@@ -6,7 +6,7 @@ const RegisterComp = () => {
   const navigate = useNavigate();
   const handleRegister = async (values) => {
     try {
-      const res = await fetch('https://auth-crud-weld.vercel.app/api/auth/signup', {
+      const res = await fetch('/api/auth/signup', {
         mode: 'cors',
         credentials: 'include',
         method: 'POST',

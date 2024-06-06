@@ -7,7 +7,7 @@ const LoginComp = () => {
 
   const handleLogin = async (values) => {
     try {
-      const res = await fetch('https://auth-crud-weld.vercel.app/api/auth/login', {
+      const res = await fetch('/api/auth/login', {
         mode: 'cors',
         credentials: 'include',
         method: 'POST',

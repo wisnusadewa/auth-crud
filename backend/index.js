@@ -7,6 +7,7 @@ const bodyparser = require('body-parser');
 require('dotenv').config();
 
 const app = express();
+app.use(express.json());
 
 const corsConfig = {
   origin: 'https://auth-crud-weld.vercel.app',
@@ -17,13 +18,12 @@ const corsConfig = {
 
 // MIDDEWARE
 app.use(cors(corsConfig));
-app.use(express.json());
 app.use(bodyparser.json());
-app.use((req, res, next) => {
-  res.header('Access-Control-Allow-Origin', '*');
-  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
-  next();
-});
+// app.use((req, res, next) => {
+//   res.header('Access-Control-Allow-Origin', '*');
+//   res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+//   next();
+// });
 
 // SERVER
 const PORT = process.env.PORT;
