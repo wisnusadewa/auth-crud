@@ -7,6 +7,8 @@ const RegisterComp = () => {
   const handleRegister = async (values) => {
     try {
       const res = await fetch('https://auth-crud-weld.vercel.app/api/auth/signup', {
+        mode: 'cors',
+        credentials: 'include',
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
