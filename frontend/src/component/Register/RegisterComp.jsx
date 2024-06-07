@@ -36,7 +36,6 @@ const RegisterComp = () => {
       const res = await axios({
         method: 'post',
         url: 'https://auth-crud-weld.vercel.app/api/auth/products',
-        withCredentials: true,
         data: values,
       });
 
