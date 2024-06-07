@@ -8,25 +8,25 @@ require('dotenv').config();
 
 const app = express();
 
-const corsConfig = {
-  // origin: ['https://auth-crud-web.vercel.app'],
-  origin: true,
-  credentials: true,
-  optionSuccessStatus: 200,
-  methods: ['GET', 'PUT', 'POST', 'DELETE'],
-  maxAge: 3600,
-};
+// const corsConfig = {
+//   // origin: ['https://auth-crud-web.vercel.app'],
+//   origin: true,
+//   credentials: true,
+//   optionSuccessStatus: 200,
+//   methods: ['GET', 'PUT', 'POST', 'DELETE'],
+//   maxAge: 3600,
+// };
 
 // MIDDEWARE
 // app.options('*', cors(corsConfig));
-app.use(cors(corsConfig));
+app.use(cors());
 
 // COBA CORS
-app.use((req, res, next) => {
-  res.header('Access-Control-Allow-Origin', '*');
-  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
-  next();
-});
+// app.use((req, res, next) => {
+//   res.header('Access-Control-Allow-Origin', '*');
+//   res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+//   next();
+// });
 
 app.use(bodyparser.json());
 app.use(express.json());
