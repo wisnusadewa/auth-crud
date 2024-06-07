@@ -8,20 +8,17 @@ require('dotenv').config();
 
 const app = express();
 
+// PARSING JSON
+app.use(express.json());
+
+// KONFIGURASI CORS
 app.use(
   cors({
-    origin: '*',
+    origin: 'https://auth-crud-web.vercel.app',
+    methods: ['GET', 'POST', 'PUT', 'DELETE'],
+    allowedHeaders: ['Content-Type', 'Authorization', 'token'],
   })
 );
-
-// app.use(
-//   cors({
-//     origin: true,
-//     credentials: true,
-//     methods: 'GET, POST, DELETE, PUT',
-//     allowedHeaders: 'Content-Type, Authorization, token',
-//   })
-// );
 
 // const corsConfig = {
 //   // origin: ['https://auth-crud-web.vercel.app'],
@@ -42,7 +39,6 @@ app.use(
 // });
 
 app.use(bodyparser.json());
-app.use(express.json());
 
 // ROUTE
 app.use('/api/auth', authRoutes);

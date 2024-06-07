@@ -33,11 +33,7 @@ const RegisterComp = () => {
     // }
 
     try {
-      const res = await axios({
-        method: 'post',
-        url: 'https://auth-crud-weld.vercel.app/api/auth/products',
-        data: values,
-      });
+      const res = await axios('https://auth-crud-weld.vercel.app/api/auth/products', values);
 
       console.log(res);
       if (res.status === 201) {
@@ -51,10 +47,6 @@ const RegisterComp = () => {
 
     console.log('values : ', values);
   };
-
-  // useEffect(() => {
-  //   handleRegister();
-  // }, []);
 
   return (
     <div className="h-screen w-full flex justify-center items-center">
