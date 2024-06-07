@@ -8,15 +8,15 @@ require('dotenv').config();
 
 const app = express();
 
-const corsConfig = {
-  origin: '*',
-  credentials: true,
-  optionSuccessStatus: 200,
-  methods: ['GET', 'PUT', 'POST', 'DELETE'],
-};
+// const corsConfig = {
+//   origin: 'https://auth-crud-web.vercel.app',
+//   // credentials: true,
+//   optionSuccessStatus: 200,
+//   methods: ['GET', 'PUT', 'POST', 'DELETE'],
+// };
 
 // MIDDEWARE
-app.use(cors(corsConfig));
+app.use(cors());
 app.use(bodyparser.json());
 app.use(express.json());
 
@@ -26,12 +26,6 @@ app.use(express.json());
 //   res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
 //   next();
 // });
-
-// SERVER
-const PORT = process.env.PORT;
-app.listen(PORT, () => {
-  console.log(`server running on PORT : ${PORT}`);
-});
 
 // ROUTE
 app.use('/api/auth', authRoutes);
@@ -54,4 +48,10 @@ app.use((err, req, res, next) => {
     status: err.status,
     message: err.message,
   });
+});
+
+// SERVER
+const PORT = process.env.PORT;
+app.listen(PORT, () => {
+  console.log(`server running on PORT : ${PORT}`);
 });
