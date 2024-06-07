@@ -8,7 +8,7 @@ const router = express.Router();
 router.use(cors());
 
 const corsConfig = {
-  origin: true,
+  origin: 'https://auth-crud-web.vercel.app',
   credentials: true,
   optionSuccessStatus: 200,
   methods: ['GET', 'PUT', 'POST', 'DELETE'],
