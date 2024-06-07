@@ -8,9 +8,17 @@ require('dotenv').config();
 
 const app = express();
 
+const corsConfig = {
+  origin: true,
+  credentials: true,
+  optionSuccessStatus: 200,
+  methods: ['GET', 'PUT', 'POST', 'DELETE'],
+  maxAge: 3600,
+};
+
 // MIDDEWARE
-app.use(cors());
-app.options('*', cors());
+app.options('*', cors(corsConfig));
+// app.use(cors(corsConfig));
 app.use(bodyparser.json());
 app.use(express.json());
 
