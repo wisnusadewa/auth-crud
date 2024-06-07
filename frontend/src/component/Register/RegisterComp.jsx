@@ -35,7 +35,7 @@ const RegisterComp = () => {
     try {
       const res = await axios({
         method: 'post',
-        url: 'backend-five-tau.vercel.app/api/auth/signup',
+        url: 'https://backend-five-tau.vercel.app/api/auth/products',
         // url: 'http://localhost:4000/api/auth/signup',
         // withCredentials: true,
         data: values,
