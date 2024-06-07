@@ -9,8 +9,9 @@ require('dotenv').config();
 const app = express();
 
 const corsConfig = {
-  origin: ['https://auth-crud-web.vercel.app'],
-  // credentials: true,
+  // origin: ['https://auth-crud-web.vercel.app'],
+  origin: true,
+  credentials: true,
   optionSuccessStatus: 200,
   methods: ['GET', 'PUT', 'POST', 'DELETE'],
   maxAge: 3600,
@@ -19,6 +20,7 @@ const corsConfig = {
 // MIDDEWARE
 // app.options('*', cors(corsConfig));
 app.use(cors(corsConfig));
+
 // COBA CORS
 app.use((req, res, next) => {
   res.header('Access-Control-Allow-Origin', '*');
