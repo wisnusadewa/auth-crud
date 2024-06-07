@@ -7,10 +7,9 @@ const bodyparser = require('body-parser');
 require('dotenv').config();
 
 const app = express();
-app.use(express.json());
 
 const corsConfig = {
-  origin: 'https://auth-crud-weld.vercel.app',
+  origin: '*',
   credentials: true,
   optionSuccessStatus: 200,
   methods: ['GET', 'PUT', 'POST', 'DELETE'],
@@ -19,6 +18,9 @@ const corsConfig = {
 // MIDDEWARE
 app.use(cors(corsConfig));
 app.use(bodyparser.json());
+app.use(express.json());
+
+// COBA CORS
 // app.use((req, res, next) => {
 //   res.header('Access-Control-Allow-Origin', '*');
 //   res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');

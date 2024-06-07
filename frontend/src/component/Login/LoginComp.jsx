@@ -1,29 +1,43 @@
 import { Button, Form, Input, message } from 'antd';
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 const LoginComp = () => {
   const navigate = useNavigate();
 
   const handleLogin = async (values) => {
-    try {
-      const res = await fetch('/api/auth/login', {
-        mode: 'cors',
-        credentials: 'include',
-        method: 'POST',
-        headers: {
-          'Content-type': 'application/json',
-        },
-        body: JSON.stringify(values),
-      });
+    // try {
+    //   const res = await fetch('/api/auth/login', {
+    //     mode: 'cors',
+    //     credentials: 'include',
+    //     method: 'POST',
+    //     headers: {
+    //       'Content-type': 'application/json',
+    //     },
+    //     body: JSON.stringify(values),
+    //   });
 
-      const data = await res.json();
-      localStorage.setItem('token', data.token);
-      navigate('/');
-      if (res.status === 200) {
-        message.success(data.message);
+    //   const data = await res.json();
+    //   localStorage.setItem('token', data.token);
+    //   navigate('/');
+    //   if (res.status === 200) {
+    //     message.success(data.message);
+    //   }
+    // } catch (error) {
+    //   console.log(error);
+    // }
+
+    try {
+      const res = await axios.post('https://auth-crud-weld.vercel.app/api/auth/login', values);
+      console.log(res);
+      if (res.status === 201) {
+        message.success(res.data.message);
       }
+      localStorage.setItem('token', res.data.token);
+      navigate('/');
     } catch (error) {
+      message.error(error.response.data.message);
       console.log(error);
     }
   };

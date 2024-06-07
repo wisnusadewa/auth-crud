@@ -1,28 +1,45 @@
-import { useRef } from 'react';
+import axios from 'axios';
+import { useRef, useState } from 'react';
 
 const Add = ({ handleClose }) => {
-  const nameRef = useRef(null);
-  const priceRef = useRef(null);
+  // const nameRef = useRef(null);
+  // const priceRef = useRef(null);
+
+  const [values, setValues] = useState({
+    name: '',
+    price: '',
+  });
 
   const handleSubmit = async () => {
-    const name = nameRef.current.value;
-    const price = priceRef.current.value;
+    // const name = nameRef.current.value;
+    // const price = priceRef.current.value;
+
+    // try {
+    //   await fetch('https://auth-crud-weld.vercel.app/api/auth/products', {
+    //     method: 'POST',
+    //     headers: {
+    //       'Content-Type': 'application/json',
+    //     },
+    //     body: JSON.stringify({
+    //       name: name,
+    //       price: price,
+    //     }),
+    //   });
+    //   window.location.reload();
+    // } catch (error) {
+    //   console.log(error);
+    // }
 
     try {
-      await fetch('https://auth-crud-weld.vercel.app/api/auth/products', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          name: name,
-          price: price,
-        }),
-      });
+      await axios.post('https://auth-crud-weld.vercel.app/api/auth/products', values);
+      alert('produk berhasil dibuat');
       window.location.reload();
     } catch (error) {
+      alert('produk gagal dibuat');
       console.log(error);
     }
+
+    console.log(values);
   };
 
   return (
@@ -33,8 +50,8 @@ const Add = ({ handleClose }) => {
         <div className="modal-action flex flex-col w-full ">
           <form method="dialog" onSubmit={handleSubmit} className="text-white">
             <div className="flex flex-col gap-4 w-full mb-4">
-              <input name="name" ref={nameRef} type="text" placeholder="Name Product" className="input input-bordered w-full max-w-xs" />
-              <input name="price" ref={priceRef} type="text" placeholder="Price" className="input input-bordered w-full max-w-xs" />
+              <input name="name" value={values.name} onChange={(e) => setValues({ ...values, name: e.target.value })} type="text" placeholder="Name Product" className="input input-bordered w-full max-w-xs" />
+              <input name="price" value={values.price} onChange={(e) => setValues({ ...values, price: e.target.value })} type="text" placeholder="Price" className="input input-bordered w-full max-w-xs" />
               <h1>{''}</h1>
             </div>
             <div className="flex gap-2">

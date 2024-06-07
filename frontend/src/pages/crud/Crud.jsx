@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import CrudComp from '../../component/Crud/CrudComp';
 import Add from '../../component/Crud/Add';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
 
 const Crud = () => {
   const [isModal, setIsModal] = useState(false);
@@ -17,11 +18,19 @@ const Crud = () => {
   const [items, setItems] = useState();
 
   const getData = async () => {
+    // try {
+    //   const res = await fetch('https://auth-crud-weld.vercel.app/api/auth/products');
+    //   const result = await res.json();
+    //   setItems(result);
+    //   console.log(result);
+    // } catch (error) {
+    //   console.log(error);
+    // }
+
     try {
-      const res = await fetch('https://auth-crud-weld.vercel.app/api/auth/products');
-      const result = await res.json();
-      setItems(result);
-      console.log(result);
+      const res = await axios.get('https://auth-crud-weld.vercel.app/api/auth/products');
+      setItems(res.data);
+      console.log(items);
     } catch (error) {
       console.log(error);
     }

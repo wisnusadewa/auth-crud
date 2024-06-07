@@ -1,36 +1,55 @@
 import { Button, Form, Input, message, Select } from 'antd';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import axios from 'axios';
+import { useEffect } from 'react';
 
 const RegisterComp = () => {
   const { Option } = Select;
   const navigate = useNavigate();
-  const handleRegister = async (values) => {
-    try {
-      const res = await fetch('/api/auth/signup', {
-        mode: 'cors',
-        credentials: 'include',
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(values),
-      });
 
-      const data = await res.json();
-      navigate('/login');
+  const handleRegister = async (values) => {
+    // try {
+    //   const res = await fetch('/api/auth/signup', {
+    //     mode: 'cors',
+    //     credentials: 'include',
+    //     method: 'POST',
+    //     headers: {
+    //       'Content-Type': 'application/json',
+    //     },
+    //     body: JSON.stringify(values),
+    //   });
+
+    //   const data = await res.json();
+    //   navigate('/login');
+    //   if (res.status === 201) {
+    //     message.success(data.message);
+    //   } else if (res.status === 500) {
+    //     message.error(data.message);
+    //   } else {
+    //     message.error('registrasi gagal');
+    //   }
+    // } catch (error) {
+    //   message.error(data.message);
+    // }
+
+    try {
+      const res = await axios.post('https://auth-crud-weld.vercel.app/api/auth/signup', values);
+      console.log(res);
       if (res.status === 201) {
-        message.success(data.message);
-      } else if (res.status === 500) {
-        message.error(data.message);
-      } else {
-        message.error('registrasi gagal');
+        message.success(res.data.message);
       }
+      navigate('/login');
     } catch (error) {
-      message.error(data.message);
+      message.error(error.response.data.message);
+      console.log(error.response.data);
     }
 
     console.log('values : ', values);
   };
+
+  // useEffect(() => {
+  //   handleRegister();
+  // }, []);
 
   return (
     <div className="h-screen w-full flex justify-center items-center">
@@ -105,6 +124,9 @@ const RegisterComp = () => {
           >
             <Button type="primary" htmlType="submit">
               Submit
+            </Button>
+            <Button type="primary" htmlType="submit" className="ml-2">
+              <Link to={'/login'}>To Login</Link>
             </Button>
           </Form.Item>
         </Form>

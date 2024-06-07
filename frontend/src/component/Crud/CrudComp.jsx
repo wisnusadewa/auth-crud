@@ -1,16 +1,25 @@
+import axios from 'axios';
 import { Link } from 'react-router-dom';
 
 const CrudComp = ({ product }) => {
   const { _id, name, price } = product;
 
   const handleDelete = async () => {
+    // try {
+    //   await fetch(`https://auth-crud-weld.vercel.app/api/auth/products/${_id}`, {
+    //     method: 'DELETE',
+    //     headers: {
+    //       'Content-Type': 'application/json',
+    //     },
+    //   });
+    //   window.location.reload();
+    // } catch (error) {
+    //   console.log(error);
+    // }
+
     try {
-      await fetch(`https://auth-crud-weld.vercel.app/api/auth/products/${_id}`, {
-        method: 'DELETE',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      });
+      await axios.delete(`https://auth-crud-weld.vercel.app/api/auth/products/${_id}`);
+      window.confirm('apakah benar ingin dihapus ?');
       window.location.reload();
     } catch (error) {
       console.log(error);

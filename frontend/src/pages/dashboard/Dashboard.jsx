@@ -1,3 +1,4 @@
+import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
@@ -7,14 +8,24 @@ const Dashboard = () => {
   const navigate = useNavigate();
 
   const fetchUser = async () => {
+    //   try {
+    //     const res = await fetch('https://auth-crud-weld.vercel.app/api/auth/users', {
+    //       headers: {
+    //         Authorization: `Bearer ${token}`,
+    //       },
+    //     });
+    //     const result = await res.json();
+    //     setUsers(result);
+    //   } catch (error) {
+    //     console.log(error);
+    //   }
+
     try {
-      const res = await fetch('https://auth-crud-weld.vercel.app/api/auth/users', {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
+      const res = await axios.get('https://auth-crud-weld.vercel.app/api/auth/users', {
+        Authorization: `Bearer ${token}`,
       });
-      const result = await res.json();
-      setUsers(result);
+      setUsers(res.data);
+      console.log(res);
     } catch (error) {
       console.log(error);
     }

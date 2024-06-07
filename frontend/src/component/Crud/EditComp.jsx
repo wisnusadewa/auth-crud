@@ -1,3 +1,4 @@
+import axios from 'axios';
 import React, { useRef, useState } from 'react';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 
@@ -7,37 +8,52 @@ const EditComp = () => {
 
   const navigate = useNavigate();
 
-  const nameRef = useRef();
-  const priceRef = useRef();
+  // const nameRef = useRef();
+  // const priceRef = useRef();
+
+  const [values, setValues] = useState({
+    name: '',
+    price: '',
+  });
 
   const handleBack = () => {
     navigate('/crud');
   };
 
   const handleEdit = async () => {
-    const name = nameRef.current.value;
-    const price = priceRef.current.value;
+    // const name = nameRef.current.value;
+    // const price = priceRef.current.value;
 
-    console.log(name);
-    console.log(price);
+    // console.log(name);
+    // console.log(price);
+
+    // try {
+    //   await fetch(`https://auth-crud-weld.vercel.app/api/auth/products/${id}`, {
+    //     method: 'PUT',
+    //     headers: {
+    //       'Content-Type': 'application/json',
+    //     },
+    //     body: JSON.stringify({
+    //       name: name,
+    //       price: price,
+    //     }),
+    //   });
+
+    //   navigate('/crud');
+    // } catch (error) {
+    //   console.log(error);
+    // }
 
     try {
-      await fetch(`http://localhost:4000/api/auth/products/${id}`, {
-        method: 'PUT',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          name: name,
-          price: price,
-        }),
-      });
-
+      await axios.put(`https://auth-crud-weld.vercel.app/api/auth/products/${id}`, values);
+      window.confirm('apakah benar ingin diedit ?');
       navigate('/crud');
     } catch (error) {
       console.log(error);
     }
   };
+
+  console.log(values);
 
   return (
     <div>
@@ -47,8 +63,8 @@ const EditComp = () => {
           <div className="border rounded-lg px-2 py-2">
             <form method="dialog" onSubmit={handleEdit} className="text-white">
               <div className="flex flex-col gap-4 w-full mb-4">
-                <input name="name" ref={nameRef} type="text" placeholder="Name Product" className="input input-bordered w-full max-w-xs" />
-                <input name="price" ref={priceRef} type="text" placeholder="Price" className="input input-bordered w-full max-w-xs" />
+                <input name="name" value={values.name} onChange={(e) => setValues({ ...values, name: e.target.value })} type="text" placeholder="Name Product" className="input input-bordered w-full max-w-xs" />
+                <input name="price" value={values.price} onChange={(e) => setValues({ ...values, price: e.target.value })} type="text" placeholder="Price" className="input input-bordered w-full max-w-xs" />
                 <h1>{''}</h1>
               </div>
               <div className="flex justify-between">
