@@ -18,8 +18,15 @@ const app = express();
 // };
 
 // MIDDEWARE
-// app.options('*', cors(corsConfig));
-app.use(cors());
+
+app.use(
+  cors({
+    origin: true,
+    credentials: true,
+    methods: 'GET, POST, DELETE, PUT',
+    allowedHeaders: 'Content-Type, Authorization, token',
+  })
+);
 
 // COBA CORS
 // app.use((req, res, next) => {
