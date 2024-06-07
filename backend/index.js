@@ -8,15 +8,8 @@ require('dotenv').config();
 
 const app = express();
 
-const corsConfig = {
-  origin: 'https://auth-crud-web.vercel.app',
-  // credentials: true,
-  optionSuccessStatus: 200,
-  methods: ['GET', 'PUT', 'POST', 'DELETE'],
-};
-
 // MIDDEWARE
-app.use(cors(corsConfig));
+app.use(cors());
 app.options('*', cors());
 app.use(bodyparser.json());
 app.use(express.json());
