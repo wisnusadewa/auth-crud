@@ -1,7 +1,7 @@
 {
   "name": "frontend",
   "private": true,
-  "proxy": "https://auth-crud-weld.vercel.app",
+  "proxy": "https://backend-five-tau.vercel.app",
   "version": "0.0.0",
   "type": "module",
   "scripts": {
