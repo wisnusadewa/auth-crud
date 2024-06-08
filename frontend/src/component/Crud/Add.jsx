@@ -31,7 +31,7 @@ const Add = ({ handleClose }) => {
     // }
 
     try {
-      await axios.post('https://auth-crud-weld.vercel.app/api/auth/products', values);
+      await axios.post('/api/auth/products', values);
       alert('produk berhasil dibuat');
       window.location.reload();
     } catch (error) {

@@ -21,7 +21,7 @@ const Dashboard = () => {
     //   }
 
     try {
-      const res = await axios.get('https://auth-crud-weld.vercel.app/api/auth/users', {
+      const res = await axios.get('/api/auth/users', {
         Authorization: `Bearer ${token}`,
       });
       setUsers(res.data);

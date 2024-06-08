@@ -45,7 +45,7 @@ const EditComp = () => {
     // }
 
     try {
-      await axios.put(`https://auth-crud-weld.vercel.app/api/auth/products/${id}`, values);
+      await axios.put(`/api/auth/products/${id}`, values);
       window.confirm('apakah benar ingin diedit ?');
       navigate('/crud');
     } catch (error) {

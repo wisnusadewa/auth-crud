@@ -18,7 +18,7 @@ const CrudComp = ({ product }) => {
     // }
 
     try {
-      await axios.delete(`https://auth-crud-weld.vercel.app/api/auth/products/${_id}`);
+      await axios.delete(`/api/auth/products/${_id}`);
       window.confirm('apakah benar ingin dihapus ?');
       window.location.reload();
     } catch (error) {

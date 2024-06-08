@@ -29,7 +29,7 @@ const LoginComp = () => {
     // }
 
     try {
-      const res = await axios.post('https://auth-crud-weld.vercel.app/api/auth/login', values);
+      const res = await axios.post('/api/auth/login', values);
       console.log(res);
       if (res.status === 201) {
         message.success(res.data.message);

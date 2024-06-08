@@ -28,7 +28,7 @@ const Crud = () => {
     // }
 
     try {
-      const res = await axios.get('https://auth-crud-weld.vercel.app/api/auth/products');
+      const res = await axios.get('/api/auth/products');
       setItems(res.data);
       console.log(items);
     } catch (error) {

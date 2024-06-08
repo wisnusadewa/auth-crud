@@ -33,7 +33,7 @@ const RegisterComp = () => {
     // }
 
     try {
-      const res = await axios.post('https://auth-crud-weld.vercel.app/api/auth/signup', values);
+      const res = await axios.post('/api/auth/signup', values);
 
       console.log(res);
       if (res.status === 201) {
