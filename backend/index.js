@@ -3,7 +3,8 @@ const cors = require('cors');
 const mongoose = require('mongoose');
 const authRoutes = require('./routes/authRoutes');
 const productRoutes = require('./routes/productRoutes');
-const bodyparser = require('body-parser');
+const bodyParser = require('body-parser');
+const cookieParser = require('cookie-parser');
 require('dotenv').config();
 
 // MONGODB CONNECTION
@@ -28,7 +29,8 @@ app.use(
 
 // PARSING JSON
 app.use(express.json());
-app.use(bodyparser.json());
+app.use(bodyParser.json());
+app.use(cookieParser());
 
 // ROUTE
 app.use('/api/auth', authRoutes);
