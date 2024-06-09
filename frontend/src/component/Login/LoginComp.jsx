@@ -5,6 +5,9 @@ import axios from 'axios';
 
 const LoginComp = () => {
   const navigate = useNavigate();
+  // const [token, setToken] = useState(localStorage.getItem('token') || '');
+
+  const API_URL = import.meta.env.VITE_API_URL;
 
   const handleLogin = async (values) => {
     // try {
@@ -29,7 +32,11 @@ const LoginComp = () => {
     // }
 
     try {
-      const res = await axios.post('/api/auth/login', values);
+      const res = await axios.post(`${API_URL}/api/auth/login`, values, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
       console.log(res);
       if (res.status === 201) {
         message.success(res.data.message);

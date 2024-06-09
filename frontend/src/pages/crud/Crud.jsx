@@ -6,6 +6,7 @@ import axios from 'axios';
 
 const Crud = () => {
   const [isModal, setIsModal] = useState(false);
+  const API_URL = import.meta.env.REACT_API_APP_URL;
 
   const handleAdd = () => {
     setIsModal(true);
@@ -28,7 +29,7 @@ const Crud = () => {
     // }
 
     try {
-      const res = await axios.get('/api/auth/products');
+      const res = await axios.get(`${API_URL}/api/auth/products`);
       setItems(res.data);
       console.log(items);
     } catch (error) {

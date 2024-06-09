@@ -1,6 +1,5 @@
 const express = require('express');
 const authControllers = require('../controllers/authControllers');
-const cors = require('cors');
 const userController = require('../controllers/user');
 const authMiddleware = require('../utils/authMiddleware');
 

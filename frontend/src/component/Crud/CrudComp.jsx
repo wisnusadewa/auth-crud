@@ -4,6 +4,8 @@ import { Link } from 'react-router-dom';
 const CrudComp = ({ product }) => {
   const { _id, name, price } = product;
 
+  const API_URL = import.meta.env.VITE_API_URL;
+
   const handleDelete = async () => {
     // try {
     //   await fetch(`https://auth-crud-weld.vercel.app/api/auth/products/${_id}`, {
@@ -18,7 +20,7 @@ const CrudComp = ({ product }) => {
     // }
 
     try {
-      await axios.delete(`/api/auth/products/${_id}`);
+      await axios.delete(`${API_URL}/api/auth/products/${_id}`);
       window.confirm('apakah benar ingin dihapus ?');
       window.location.reload();
     } catch (error) {

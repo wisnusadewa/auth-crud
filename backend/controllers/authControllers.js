@@ -23,17 +23,12 @@ exports.signup = async (req, res, next) => {
     });
 
     // JWT
-    // const payload = {
-    //   id: user._id,
-    //   email: user.email,
-    // };
-    // const token = jwt.sign(payload, secretKey, {
-    //   expiresIn: '1h',
-    // });
+    const token = jwt.sign({ _id: newUser._id }, secretKey);
 
     res.status(201).json({
       status: 'success',
       message: 'User Berhasil Registrasi',
+      token,
       secretKey,
       user: {
         _id: newUser._id,
@@ -79,6 +74,7 @@ exports.login = async (req, res, next) => {
       status: 'berhasil',
       message: 'user berhasil login',
       token,
+      secretKey,
       user: {
         _id: user._id,
         name: user.name,

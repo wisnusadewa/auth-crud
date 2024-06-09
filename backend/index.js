@@ -7,34 +7,39 @@ const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 require('dotenv').config();
 
-// MONGODB CONNECTION
-// 'mongodb://127.0.0.1:27017/authentication'
-
-mongoose
-  .connect(process.env.MONGODB_URL)
-  .then(() => console.log('connect to mongodb'))
-  .catch((error) => console.error('failed to connect mongodb', error));
-
 const app = express();
 
-// KONFIGURASI CORS
-app.use(
-  cors({
-    origin: ['http://localhost:5173', 'https://auth-crud-web.vercel.app'],
-    methods: ['GET', 'POST', 'PUT', 'DELETE'],
-    allowedHeaders: ['Content-Type', 'Authorization', 'token'],
-    credentials: true,
-  })
-);
+// KONFIGURASI CORS MIDDLEWARE
+app.use(cors());
+// app.use(
+//   cors({
+//     origin: '*',
+//     methods: ['GET', 'POST', 'PUT', 'DELETE'],
+//     allowedHeaders: ['Content-Type', 'Authorization', 'token'],
+//     credentials: true,
+//   })
+// );
 
 // PARSING JSON
 app.use(express.json());
-app.use(bodyParser.json());
-app.use(cookieParser());
+app.use(express.urlencoded({ extended: true }));
+
+// app.use(bodyParser.json());
+// app.use(cookieParser());
 
 // ROUTE
 app.use('/api/auth', authRoutes);
-app.use('/api/auth', productRoutes);
+app.use('/api', productRoutes);
+
+// MONGODB CONNECTION
+// 'mongodb://127.0.0.1:27017/authentication'
+
+const mongoURI = process.env.MONGODB_URL;
+
+mongoose
+  .connect(mongoURI)
+  .then(() => console.log('connect to mongodb'))
+  .catch((error) => console.error('failed to connect mongodb', error));
 
 // GLOBAL ERROR HANDLER
 app.use((err, req, res, next) => {
@@ -53,4 +58,5 @@ app.listen(PORT, () => {
   console.log(`server running on PORT : ${PORT}`);
 });
 
+// FOR VERCEL
 module.exports = app;

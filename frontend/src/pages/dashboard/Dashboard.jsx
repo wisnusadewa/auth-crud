@@ -7,6 +7,8 @@ const Dashboard = () => {
   const [users, setUsers] = useState([]);
   const navigate = useNavigate();
 
+  const API_URL = import.meta.env.VITE_API_URL;
+
   const fetchUser = async () => {
     //   try {
     //     const res = await fetch('https://auth-crud-weld.vercel.app/api/auth/users', {
@@ -21,9 +23,7 @@ const Dashboard = () => {
     //   }
 
     try {
-      const res = await axios.get('/api/auth/users', {
-        Authorization: `Bearer ${token}`,
-      });
+      const res = await axios.get(`${API_URL}/api/auth/users`);
       setUsers(res.data);
       console.log(res);
     } catch (error) {

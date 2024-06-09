@@ -7,6 +7,8 @@ const RegisterComp = () => {
   const { Option } = Select;
   const navigate = useNavigate();
 
+  const API_URL = import.meta.env.VITE_API_URL;
+
   const handleRegister = async (values) => {
     // try {
     //   const res = await fetch('/api/auth/signup', {
@@ -33,7 +35,7 @@ const RegisterComp = () => {
     // }
 
     try {
-      const res = await axios.post('/api/auth/signup', values);
+      const res = await axios.post(`${API_URL}/api/auth/signup`, values);
 
       console.log(res);
       if (res.status === 201) {
