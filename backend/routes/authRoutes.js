@@ -5,7 +5,7 @@ const authMiddleware = require('../utils/authMiddleware');
 const cors = require('cors');
 
 const router = express.Router();
-router.use(cors());
+// router.use(cors());
 
 router.post('/signup', authControllers.signup);
 router.post('/login', authControllers.login);

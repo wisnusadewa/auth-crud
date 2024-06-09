@@ -10,16 +10,16 @@ require('dotenv').config();
 const app = express();
 
 // KONFIGURASI CORS MIDDLEWARE
-app.use(cors());
+// app.use(cors());
 
-// app.use(
-//   cors({
-//     origin: ['http://localhost:5173/', 'https://auth-crud-web.vercel.app/login'],
-//     methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
-//     allowedHeaders: ['Content-Type', 'Authorization', 'token'],
-//     credentials: true,
-//   })
-// );
+app.use(
+  cors({
+    origin: ['http://localhost:5173/', 'https://auth-crud-web.vercel.app/login'],
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization', 'token'],
+    credentials: true,
+  })
+);
 
 // app.use(function (req, res, next) {
 //   res.header('Access-Control-Allow-Origin', '*');
