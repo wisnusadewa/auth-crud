@@ -1,10 +1,11 @@
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+import api from '../../Api/Api';
 
 const CrudComp = ({ product }) => {
   const { _id, name, price } = product;
 
-  const API_URL = import.meta.env.VITE_API_URL;
+  // const API_URL = import.meta.env.VITE_API_URL;
 
   const handleDelete = async () => {
     // try {
@@ -20,7 +21,7 @@ const CrudComp = ({ product }) => {
     // }
 
     try {
-      await axios.delete(`${API_URL}/api/auth/products/${_id}`);
+      await api.delete(`/products/${_id}`);
       window.confirm('apakah benar ingin dihapus ?');
       window.location.reload();
     } catch (error) {

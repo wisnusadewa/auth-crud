@@ -3,10 +3,11 @@ import CrudComp from '../../component/Crud/CrudComp';
 import Add from '../../component/Crud/Add';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import api from '../../Api/Api';
 
 const Crud = () => {
   const [isModal, setIsModal] = useState(false);
-  const API_URL = import.meta.env.REACT_API_APP_URL;
+  // const API_URL = import.meta.env.REACT_API_APP_URL;
 
   const handleAdd = () => {
     setIsModal(true);
@@ -29,7 +30,7 @@ const Crud = () => {
     // }
 
     try {
-      const res = await axios.get(`${API_URL}/api/auth/products`);
+      const res = await api.get(`/products`);
       setItems(res.data);
       console.log(items);
     } catch (error) {

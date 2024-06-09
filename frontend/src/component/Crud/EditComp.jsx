@@ -1,12 +1,13 @@
 import axios from 'axios';
 import React, { useRef, useState } from 'react';
 import { Link, useNavigate, useParams } from 'react-router-dom';
+import api from '../../Api/Api';
 
 const EditComp = () => {
   let { id } = useParams();
   console.log(id);
 
-  const API_URL = import.meta.env.VITE_API_URL;
+  // const API_URL = import.meta.env.VITE_API_URL;
 
   const navigate = useNavigate();
 
@@ -47,7 +48,7 @@ const EditComp = () => {
     // }
 
     try {
-      await axios.put(`${API_URL}/api/auth/products/${id}`, values);
+      await api.put(`/products/${id}`, values);
       window.confirm('apakah benar ingin diedit ?');
       navigate('/crud');
     } catch (error) {

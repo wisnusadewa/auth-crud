@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { useRef, useState } from 'react';
+import api from '../../Api/Api';
 
 const Add = ({ handleClose }) => {
   // const nameRef = useRef(null);
@@ -9,7 +10,7 @@ const Add = ({ handleClose }) => {
     name: '',
     price: '',
   });
-  const API_URL = import.meta.env.VITE_API_URL;
+  // const API_URL = import.meta.env.VITE_API_URL;
 
   const handleSubmit = async () => {
     // const name = nameRef.current.value;
@@ -32,7 +33,7 @@ const Add = ({ handleClose }) => {
     // }
 
     try {
-      await axios.post(`${API_URL}/api/auth/products`, values);
+      await api.post(`/products`, values);
       alert('produk berhasil dibuat');
       window.location.reload();
     } catch (error) {

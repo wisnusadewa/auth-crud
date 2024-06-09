@@ -1,11 +1,13 @@
 import { Button, Form, Input, message, Select } from 'antd';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
+import api from '../../Api/Api';
 
 const RegisterComp = () => {
   const { Option } = Select;
   const navigate = useNavigate();
+  const [token, setToken] = useState(localStorage.getItem('token'));
 
   const API_URL = import.meta.env.VITE_API_URL;
 
@@ -35,7 +37,7 @@ const RegisterComp = () => {
     // }
 
     try {
-      const res = await axios.post(`${API_URL}/api/auth/signup`, values);
+      const res = await api.post(`/auth/signup`, values);
 
       console.log(res);
       if (res.status === 201) {

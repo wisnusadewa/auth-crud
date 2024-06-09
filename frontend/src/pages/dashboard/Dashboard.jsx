@@ -1,13 +1,14 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import api from '../../Api/Api';
 
 const Dashboard = () => {
   const token = localStorage.getItem('token');
   const [users, setUsers] = useState([]);
   const navigate = useNavigate();
 
-  const API_URL = import.meta.env.VITE_API_URL;
+  // const API_URL = import.meta.env.VITE_API_URL;
 
   const fetchUser = async () => {
     //   try {
@@ -23,7 +24,7 @@ const Dashboard = () => {
     //   }
 
     try {
-      const res = await axios.get(`${API_URL}/api/auth/users`);
+      const res = await api.get(`/auth/users`);
       setUsers(res.data);
       console.log(res);
     } catch (error) {
