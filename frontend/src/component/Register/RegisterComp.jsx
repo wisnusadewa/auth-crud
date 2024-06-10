@@ -37,7 +37,11 @@ const RegisterComp = () => {
     // }
 
     try {
-      const res = await axios.post(`api/auth/signup`, values);
+      const res = await axios.post(`api/auth/signup`, values, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
 
       console.log(res);
       if (res.status === 201) {

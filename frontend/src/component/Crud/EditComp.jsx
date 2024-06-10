@@ -7,7 +7,7 @@ const EditComp = () => {
   let { id } = useParams();
   console.log(id);
 
-  // const API_URL = import.meta.env.VITE_API_URL;
+  const API_URL = import.meta.env.VITE_API_URL;
 
   const navigate = useNavigate();
 
@@ -48,7 +48,7 @@ const EditComp = () => {
     // }
 
     try {
-      await api.put(`/products/${id}`, values);
+      await axios.put(`/api/products/${id}`, values);
       window.confirm('apakah benar ingin diedit ?');
       navigate('/crud');
     } catch (error) {

@@ -10,7 +10,7 @@ const Add = ({ handleClose }) => {
     name: '',
     price: '',
   });
-  // const API_URL = import.meta.env.VITE_API_URL;
+  const API_URL = import.meta.env.VITE_API_URL;
 
   const handleSubmit = async () => {
     // const name = nameRef.current.value;
@@ -33,7 +33,7 @@ const Add = ({ handleClose }) => {
     // }
 
     try {
-      await api.post(`/products`, values);
+      await axios.post(`/api/products`, values);
       alert('produk berhasil dibuat');
       window.location.reload();
     } catch (error) {

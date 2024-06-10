@@ -30,7 +30,7 @@ const Crud = () => {
     // }
 
     try {
-      const res = await api.get(`/products`);
+      const res = await axios.get(`/api/products`);
       setItems(res.data);
       console.log(items);
     } catch (error) {

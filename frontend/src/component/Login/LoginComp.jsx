@@ -6,9 +6,9 @@ import api from '../../Api/Api';
 
 const LoginComp = () => {
   const navigate = useNavigate();
-  // const [token, setToken] = useState(localStorage.getItem('token') || '');
+  const [token, setToken] = useState(localStorage.getItem('token') || '');
 
-  // const API_URL = import.meta.env.VITE_API_URL;
+  const API_URL = import.meta.env.VITE_API_URL;
 
   const handleLogin = async (values) => {
     // try {
@@ -33,7 +33,7 @@ const LoginComp = () => {
     // }
 
     try {
-      const res = await api.post(`/auth/login`, values, {
+      const res = await axios.post(`/api/auth/login`, values, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -45,7 +45,7 @@ const LoginComp = () => {
       localStorage.setItem('token', res.data.token);
       navigate('/');
     } catch (error) {
-      message.error(error.response.data.message);
+      // message.error(error.response.data.message);
       console.log(error);
     }
   };

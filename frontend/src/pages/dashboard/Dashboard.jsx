@@ -8,7 +8,7 @@ const Dashboard = () => {
   const [users, setUsers] = useState([]);
   const navigate = useNavigate();
 
-  // const API_URL = import.meta.env.VITE_API_URL;
+  const API_URL = import.meta.env.VITE_API_URL;
 
   const fetchUser = async () => {
     //   try {
@@ -24,7 +24,7 @@ const Dashboard = () => {
     //   }
 
     try {
-      const res = await api.get(`/auth/users`);
+      const res = await axios.get(`/api/auth/users`);
       setUsers(res.data);
       console.log(res);
     } catch (error) {
