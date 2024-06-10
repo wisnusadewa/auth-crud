@@ -21,7 +21,7 @@ const CrudComp = ({ product }) => {
     // }
 
     try {
-      await axios.delete(`/api/products/${_id}`);
+      await axios.delete(`${API_URL}/api/products/${_id}`);
       window.confirm('apakah benar ingin dihapus ?');
       window.location.reload();
     } catch (error) {

@@ -33,7 +33,7 @@ const Add = ({ handleClose }) => {
     // }
 
     try {
-      await axios.post(`/api/products`, values);
+      await axios.post(`${API_URL}/api/products`, values);
       alert('produk berhasil dibuat');
       window.location.reload();
     } catch (error) {

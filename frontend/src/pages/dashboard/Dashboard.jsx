@@ -24,7 +24,7 @@ const Dashboard = () => {
     //   }
 
     try {
-      const res = await axios.get(`/api/auth/users`);
+      const res = await axios.get(`${API_URL}/api/auth/users`);
       setUsers(res.data);
       console.log(res);
     } catch (error) {

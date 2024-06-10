@@ -7,7 +7,7 @@ import api from '../../Api/Api';
 
 const Crud = () => {
   const [isModal, setIsModal] = useState(false);
-  // const API_URL = import.meta.env.REACT_API_APP_URL;
+  const API_URL = import.meta.env.VITE_API_URL;
 
   const handleAdd = () => {
     setIsModal(true);
@@ -30,7 +30,7 @@ const Crud = () => {
     // }
 
     try {
-      const res = await axios.get(`/api/products`);
+      const res = await axios.get(`${API_URL}/api/products`);
       setItems(res.data);
       console.log(items);
     } catch (error) {

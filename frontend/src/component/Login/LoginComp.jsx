@@ -33,7 +33,7 @@ const LoginComp = () => {
     // }
 
     try {
-      const res = await axios.post(`/api/auth/login`, values, {
+      const res = await axios.post(`${API_URL}/api/auth/login`, values, {
         headers: {
           Authorization: `Bearer ${token}`,
         },

@@ -48,7 +48,7 @@ const EditComp = () => {
     // }
 
     try {
-      await axios.put(`/api/products/${id}`, values);
+      await axios.put(`${API_URL}/api/products/${id}`, values);
       window.confirm('apakah benar ingin diedit ?');
       navigate('/crud');
     } catch (error) {
