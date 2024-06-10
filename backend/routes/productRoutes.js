@@ -1,31 +1,19 @@
 const express = require('express');
+const { postProduct, getProduct, editProduct, deleteProduct } = require('../controllers/productController');
+
 const router = express.Router();
 
-const Product = require('../models/productModels');
-
 // POST
-router.post('/products', async (req, res, next) => {
-  try {
-    const newProduct = new Product({
-      name: req.body.name,
-      price: req.body.price,
-    });
-    const item = await newProduct.save();
-    res.status(201).json({ item: item, message: 'produk berhasil dibuat' });
-  } catch (error) {
-    next(error);
-  }
-});
+router.post('/products', postProduct);
 
 // GET ALL DATA
-router.get('/products', async (req, res, next) => {
-  try {
-    const getData = await Product.find();
-    res.json(getData);
-  } catch (error) {
-    next(error);
-  }
-});
+router.get('/products', getProduct);
+
+// PUT
+router.put('/products/:productId', editProduct);
+
+// DELETE
+router.delete('/products/:productId', deleteProduct);
 
 // PATCH
 // router.patch('/products/:productId', async (req, res, next) => {
@@ -43,29 +31,5 @@ router.get('/products', async (req, res, next) => {
 //     next(error);
 //   }
 // });
-
-// PUT
-router.put('/products/:productId', async (req, res, next) => {
-  try {
-    const id = req.params.productId;
-    const product = await Product.findById(id);
-
-    product.name = req.body.name;
-    product.price = req.body.name;
-
-    const updateProduct = await product.save();
-    res.status(201).json({ produk_update: updateProduct, message: 'product berhasil di update' });
-  } catch (error) {
-    next(error);
-  }
-});
-
-// DELETE
-router.delete('/products/:productId', async (req, res, next) => {
-  const id = req.params.productId;
-  await Product.findByIdAndDelete(id);
-  res.json({ message: 'product berhasil di hapus' });
-});
-
 // EXPORT
 module.exports = router;

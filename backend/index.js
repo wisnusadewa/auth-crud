@@ -12,27 +12,27 @@ const app = express();
 // KONFIGURASI CORS MIDDLEWARE
 // app.use(cors());
 
-app.use(
-  cors({
-    origin: ['http://localhost:5173', 'https://auth-crud-web.vercel.app'],
-    methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
-    allowedHeaders: ['Content-Type', 'Authorization', 'token'],
-    credentials: true,
-  })
-);
+// app.use(
+//   cors({
+//     origin: ['http://localhost:5173', 'https://auth-crud-web.vercel.app'],
+//     methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
+//     allowedHeaders: ['Content-Type', 'Authorization', 'token'],
+//     credentials: true,
+//   })
+// );
 
-// app.use(function (req, res, next) {
-//   res.header('Access-Control-Allow-Origin', '*');
-//   res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
-//   next();
-// });
+app.use((req, res, next) => {
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Origin', 'GET, POST, PUT, PATCH, DELETE, OPTIONS');
+  res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization');
+  next();
+});
 
 // PARSING JSON
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-
-// app.use(bodyParser.json());
-// app.use(cookieParser());
+app.use(bodyParser.json());
+app.use(cookieParser());
 
 // ROUTE
 app.use('/api/auth', authRoutes);
