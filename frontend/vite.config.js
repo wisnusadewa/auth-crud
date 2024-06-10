@@ -5,7 +5,11 @@ import react from '@vitejs/plugin-react';
 export default defineConfig({
   server: {
     proxy: {
-      '/api/auth': 'https://auth-crud-weld.vercel.app',
+      '/api': {
+        target: 'https://auth-crud-weld.vercel.app',
+        // target: 'http://localhost:4000/',
+        changeOrigin: true,
+      },
     },
   },
   plugins: [react()],

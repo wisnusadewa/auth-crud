@@ -37,7 +37,7 @@ const RegisterComp = () => {
     // }
 
     try {
-      const res = await api.post(`/auth/signup`, values);
+      const res = await axios.post(`api/auth/signup`, values);
 
       console.log(res);
       if (res.status === 201) {
